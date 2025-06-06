@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommunityConnect | Custom Society Management App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-people-group text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-blue-600">CommunityConnect</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="#home" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                        <a href="#features" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Features</a>
+                        <a href="#how-it-works" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">How It Works</a>
+                        <a href="#testimonials" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Testimonials</a>
+                        <a href="#contact" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-4 md:flex md:items-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Request Demo</button>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#home" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="#features" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Features</a>
+                <a href="#how-it-works" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">How It Works</a>
+                <a href="#testimonials" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Testimonials</a>
+                <a href="#contact" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+                <div class="mt-4 pl-3 pr-4">
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-base font-medium transition duration-300">Request Demo</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Custom Society Management App — Built Just for You</h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">One-time purchase. Social media-like design. 100% tailored to your society's needs.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md text-lg font-semibold transition duration-300">Request a Demo</button>
+                        <button class="border-2 border-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-md text-lg font-semibold transition duration-300">View Features</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-400 rounded-full opacity-20"></div>
+                        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-400 rounded-full opacity-20"></div>
+                        <img src="https://via.placeholder.com/500x400" alt="App Mockup" class="relative z-10 rounded-xl shadow-2xl floating border-8 border-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snapshot Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose CommunityConnect?</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-tools text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Fully Custom-Built</h3>
+                </div>
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Modern UI</h3>
+                </div>
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-money-bill-wave text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">No Subscriptions</h3>
+                </div>
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Secure & Private</h3>
+                </div>
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-cloud text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">Cloud-Based</h3>
+                </div>
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold">User-Friendly</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight Reel -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">See What It Can Do</h2>
+            <div class="relative">
+                <div class="carousel-container overflow-hidden">
+                    <div class="carousel-track flex transition-transform duration-300" id="carousel-track">
+                        <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                                <img src="https://via.placeholder.com/600x400" alt="Feature 1" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Community Feed</h3>
+                                    <p class="text-gray-600">Like a private social media for your society members to connect and share.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                                <img src="https://via.placeholder.com/600x400" alt="Feature 2" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Maintenance Billing</h3>
+                                    <p class="text-gray-600">Auto-generate bills with reminders and online payment integration.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                                <img src="https://via.placeholder.com/600x400" alt="Feature 3" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Complaints System</h3>
+                                    <p class="text-gray-600">Residents can raise tickets and track resolution progress.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                                <img src="https://via.placeholder.com/600x400" alt="Feature 4" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Visitor Management</h3>
+                                    <p class="text-gray-600">Secure visitor logging with OTP-based entry for guests and deliveries.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full shadow-md p-2 z-10">
+                    <i class="fas fa-chevron-left text-blue-600"></i>
+                </button>
+                <button class="carousel-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full shadow-md p-2 z-10">
+                    <i class="fas fa-chevron-right text-blue-600"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Akshat Vaid</h4>
+                            <p class="text-gray-500 text-sm">President, Green Valley Society</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Our society has never felt more connected. The app has transformed how we communicate and manage our community."</p>
+                </div>
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Priya Patel</h4>
+                            <p class="text-gray-500 text-sm">Secretary, Sunshine Residency</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Loved the one-time pricing. No stress about monthly subscriptions, and we have full control over our data."</p>
+                </div>
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Amit Desai</h4>
+                            <p class="text-gray-500 text-sm">Treasurer, Royal Gardens</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The maintenance billing feature has saved us countless hours. Residents can now pay online and get instant receipts."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Exactly What Your Society Needs</h2>
+            
+            <div class="flex flex-wrap justify-center mb-8">
+                <button class="tab-button active px-6 py-2 rounded-full bg-blue-600 text-white mx-2 mb-2" data-tab="community">Community</button>
+                <button class="tab-button px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 mx-2 mb-2" data-tab="management">Management</button>
+                <button class="tab-button px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 mx-2 mb-2" data-tab="security">Security</button>
+                <button class="tab-button px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 mx-2 mb-2" data-tab="admin">Admin Tools</button>
+            </div>
+            
+            <div class="tab-content active" id="community-tab">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-comments text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Community Feed</h3>
+                            <p class="text-gray-600 mb-4">Like a private social media for your society. Members can post updates, like/comment, and share images or event plans.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Posts</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Comments</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Media Sharing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-calendar-alt text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Event Calendar</h3>
+                            <p class="text-gray-600 mb-4">Keep track of society meetings, festivals, and club activities — all in one shared calendar with reminders.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Events</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Reminders</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">RSVP</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-poll text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Polls & Notices</h3>
+                            <p class="text-gray-600 mb-4">Admin can post official notices and conduct society-wide voting (e.g., AGM decisions) with real-time results.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Voting</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Announcements</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Results</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="management-tab">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-file-invoice-dollar text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Maintenance Billing</h3>
+                            <p class="text-gray-600 mb-4">Auto-generate bills with customizable rates, send reminders, and integrate with online payment gateways.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Auto-Billing</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Reminders</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Online Payments</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-tools text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Complaints & Requests</h3>
+                            <p class="text-gray-600 mb-4">Residents raise tickets for issues, admin can mark "In Progress" or "Resolved", with ratings after resolution.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Ticketing</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Tracking</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Feedback</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-user-clock text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Visitor Management</h3>
+                            <p class="text-gray-600 mb-4">Residents get visitor alerts, gatekeepers log entries via app, with OTP-based entry for deliveries/guests.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Alerts</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Logging</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">OTP Entry</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="security-tab">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Data Security</h3>
+                            <p class="text-gray-600 mb-4">End-to-end encryption for all communications and sensitive data, with regular security audits.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Encryption</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Audits</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Emergency Contact</h3>
+                            <p class="text-gray-600 mb-4">Emergency numbers, help requests, and optional panic alert button for immediate assistance.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Contacts</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Alerts</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Help</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-user-lock text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Access Control</h3>
+                            <p class="text-gray-600 mb-4">Role-based permissions for residents, admin staff, and management committee members.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Roles</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Permissions</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Hierarchy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="admin-tab">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-tachometer-alt text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Admin Dashboard</h3>
+                            <p class="text-gray-600 mb-4">All society data in one place with analytics, reports, and quick access to all management tools.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Analytics</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Reports</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Overview</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-users-cog text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Member Management</h3>
+                            <p class="text-gray-600 mb-4">Add/remove members, moderate content, manage permissions, and track activity.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Members</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Moderation</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Activity</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-file-export text-blue-600 text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Document Center</h3>
+                            <p class="text-gray-600 mb-4">Store and share important society documents like bylaws, meeting minutes, and financial reports.</p>
+                            <div class="flex flex-wrap">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Storage</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Sharing</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full mr-2 mb-2">Archives</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">From Idea to App — Simple Process</h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <div class="relative">
+                        <div class="absolute left-8 top-0 h-full w-0.5 bg-blue-200 transform -translate-x-1/2"></div>
+                        
+                        <div class="relative pl-16 pb-10">
+                            <div class="absolute left-8 top-0 h-6 w-6 rounded-full bg-blue-600 flex items-center justify-center transform -translate-x-1/2">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Discovery Call</h3>
+                            <p class="text-gray-600">You tell us what your society needs — features, design preferences, and specific requirements.</p>
+                        </div>
+                        
+                        <div class="relative pl-16 pb-10">
+                            <div class="absolute left-8 top-0 h-6 w-6 rounded-full bg-blue-600 flex items-center justify-center transform -translate-x-1/2">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Design & Feedback</h3>
+                            <p class="text-gray-600">We design a mock UI/UX to your taste — colors, icons, features — and refine based on your feedback.</p>
+                        </div>
+                        
+                        <div class="relative pl-16 pb-10">
+                            <div class="absolute left-8 top-0 h-6 w-6 rounded-full bg-blue-600 flex items-center justify-center transform -translate-x-1/2">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">App Development</h3>
+                            <p class="text-gray-600">Our team builds the backend and frontend with regular updates on progress.</p>
+                        </div>
+                        
+                        <div class="relative pl-16 pb-10">
+                            <div class="absolute left-8 top-0 h-6 w-6 rounded-full bg-blue-600 flex items-center justify-center transform -translate-x-1/2">
+                                <span class="text-white font-bold">4</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Handover & Training</h3>
+                            <p class="text-gray-600">We deliver the app with full documentation and train your admin team on using all features.</p>
+                        </div>
+                        
+                        <div class="relative pl-16">
+                            <div class="absolute left-8 top-0 h-6 w-6 rounded-full bg-blue-600 flex items-center justify-center transform -translate-x-1/2">
+                                <span class="text-white font-bold">5</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Post-Delivery Support</h3>
+                            <p class="text-gray-600">Optional ongoing support for updates and new features at fixed pricing.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex items-center">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-center mb-6">Why Custom Beats Subscription?</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Own Your Data</h4>
+                                    <p class="text-gray-600">Your society's information stays with you, not on a third-party platform.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Cost-Effective</h4>
+                                    <p class="text-gray-600">One-time payment saves money compared to monthly fees that add up over years.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Tailored Features</h4>
+                                    <p class="text-gray-600">Get exactly what your society needs, not a one-size-fits-all solution.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Future Flexibility</h4>
+                                    <p class="text-gray-600">Add new features as your society grows, without being locked into a vendor's roadmap.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Trusted by Societies Across India</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-home text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Green Valley Society</h3>
+                            <p class="text-gray-600">Mumbai, Maharashtra</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"CommunityConnect has transformed how we manage our 200-unit complex. The complaint resolution system alone cut our response time by 60%. Residents love the social feed feature that helps neighbors connect."</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-tie text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Rajiv Malhotra</h4>
+                            <p class="text-gray-500 text-sm">RWA President</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-home text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Sunshine Residency</h3>
+                            <p class="text-gray-600">Bangalore, Karnataka</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"After trying two subscription-based apps, we switched to CommunityConnect's custom solution. The one-time payment saved us ₹1.2 lakhs in just three years. The maintenance billing automation reduced our accounting workload by 80%."</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-tie text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Neha Kapoor</h4>
+                            <p class="text-gray-500 text-sm">Treasurer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-semibold transition duration-300">Read More Case Studies</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Let's Build Your Society's App</h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <form class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="society" class="block text-gray-700 font-medium mb-2">Society Name & City</label>
+                            <input type="text" id="society" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="mobile" class="block text-gray-700 font-medium mb-2">Mobile Number</label>
+                            <input type="tel" id="mobile" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">Preferred Features (Select multiple)</label>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="feature1" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="feature1" class="ml-2 block text-gray-700">Community Feed</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="feature2" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="feature2" class="ml-2 block text-gray-700">Maintenance Billing</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="feature3" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="feature3" class="ml-2 block text-gray-700">Complaints System</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="feature4" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="feature4" class="ml-2 block text-gray-700">Visitor Management</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="feature5" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="feature5" class="ml-2 block text-gray-700">Other (Specify below)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Additional Requirements</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md text-lg font-semibold transition duration-300">Request Custom Proposal</button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-10">
+                    <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold mb-6">Quick Contact</h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold mb-4">Call or WhatsApp</h4>
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600">+91 98765 43210</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fab fa-whatsapp text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600">+91 98765 43210</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold mb-4">Email Us</h4>
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600">hello@communityconnect.in</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4">FAQ</h4>
+                            <div class="space-y-4">
+                                <div class="border-b border-gray-200 pb-4">
+                                    <h5 class="font-medium text-gray-800">Is it really one-time payment?</h5>
+                                    <p class="text-gray-600 mt-1">Yes, you pay once for development + setup. The app is yours forever with no recurring fees.</p>
+                                </div>
+                                <div class="border-b border-gray-200 pb-4">
+                                    <h5 class="font-medium text-gray-800">Do we need tech knowledge to use it?</h5>
+                                    <p class="text-gray-600 mt-1">Not at all. We design for all age groups with intuitive interfaces similar to social media apps.</p>
+                                </div>
+                                <div class="border-b border-gray-200 pb-4">
+                                    <h5 class="font-medium text-gray-800">Is support available later?</h5>
+                                    <p class="text-gray-600 mt-1">Yes, we offer optional low-cost support packages for updates and new features.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h2 class="text-3xl font-bold mb-6">Tech That Understands Your Society</h2>
+                        <p class="text-gray-600 mb-6">CommunityConnect was founded by a team who understands both technology and how residential societies function. After years of frustration with expensive subscription apps that didn't meet specific needs, we set out to create a better solution.</p>
+                        <p class="text-gray-600 mb-8">Our vision is simple: <span class="font-semibold text-blue-600">"Empowering societies to own their tech without ongoing fees or compromises."</span> We believe every community deserves a platform tailored to their unique requirements.</p>
+                        
+                        <h3 class="text-xl font-semibold mb-4">Core Values</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Simplicity</h4>
+                                    <p class="text-gray-600 text-sm">Intuitive interfaces anyone can use</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Transparency</h4>
+                                    <p class="text-gray-600 text-sm">Clear pricing with no hidden costs</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Ownership</h4>
+                                    <p class="text-gray-600 text-sm">Your data stays with your society</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">User-Centric</h4>
+                                    <p class="text-gray-600 text-sm">Designed around real resident needs</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-semibold transition duration-300">Meet Our Team</button>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-blue-50 flex items-center justify-center p-8">
+                        <div class="text-center">
+                            <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg mb-6">
+                                <img src="https://via.placeholder.com/400x400" alt="Founder" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Akshat Vaid</h3>
+                            <p class="text-blue-600 font-medium mb-4">Founder & CEO</p>
+                            <p class="text-gray-600 mb-6">With 12 years in software development and serving as RWA secretary for 3 years, Akshat saw firsthand the gap in society management solutions.</p>
+                            <div class="flex justify-center space-x-4">
+                                <a href="#" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Transform Your Society's Management?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Get a custom app that fits your community perfectly — with no monthly fees.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <button class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-md text-lg font-semibold transition duration-300">Request a Demo</button>
+                <button class="border-2 border-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-md text-lg font-semibold transition duration-300">Get Pricing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-people-group text-blue-400 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">CommunityConnect</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Custom apps for smart communities. Own your technology with no recurring fees.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white">How It Works</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Features</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Community Feed</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Maintenance Billing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Complaints System</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Visitor Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Admin Dashboard</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-blue-400"></i>
+                            <span>123 Tech Park, Bangalore, Karnataka 560001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-blue-400"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            <span>hello@communityconnect.in</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 CommunityConnect. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Carousel functionality
+        const track = document.getElementById('carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const nextBtn = document.querySelector('.carousel-next');
+        const prevBtn = document.querySelector('.carousel-prev');
+        let currentIndex = 0;
+        const slideWidth = slides[0].getBoundingClientRect().width;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active', 'bg-blue-600', 'text-white'));
+                tabButtons.forEach(btn => btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                button.classList.add('active', 'bg-blue-600', 'text-white');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
